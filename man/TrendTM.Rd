@@ -5,49 +5,48 @@
 \title{Matrix Factorization for Multivariate Time Series Analysis}
 \usage{
 TrendTM(
-  X,
-  k.select = FALSE,
-  k.max = 20,
-  struct.temp = "none",
-  tau.select = FALSE,
-  tau.max = floor(n/2),
-  type.soft = "als"
+  Data_Series,
+  k_select = FALSE,
+  k_max = 20,
+  struct_temp = "none",
+  tau_select = FALSE,
+  tau_max = floor(n/2),
+  type_soft = "als"
 )
 }
 \arguments{
-\item{X}{the data matrix with d rows and n columns containing the d temporal series with size n.}
+\item{Data_Series}{the data matrix with d rows and n columns containing the d temporal series with size n.}
 
-\item{k.select}{a boolean indicating if the rank of the matrix X will be selected. Default is FALSE.}
+\item{k_select}{a boolean indicating if the rank of the matrix Data_Series will be selected. Default is FALSE.}
 
-\item{k.max}{the fixed rank of X if \code{k.select=FALSE}. The maximal value of the rank if \code{k.select=TRUE} (must be lower than the minimum between d and n). Default is 20.}
+\item{k_max}{the fixed rank of Data_Series if \code{k_select=FALSE}. The maximal value of the rank if \code{k_select=TRUE} (must be lower than the minimum between d and n). Default is 20.}
 
-\item{struct.temp}{a name indicating the temporal structure. Could be \code{none}, \code{periodic} or \code{smooth}. Default is \code{none}.}
+\item{struct_temp}{a name indicating the temporal structure. Could be \code{none}, \code{periodic} or \code{smooth}. Default is \code{none}.}
 
-\item{tau.select}{a boolean indicating if the parameter tau will be selected. This can be possible only when \code{struct.temp=smooth}. Default is FALSE.}
+\item{tau_select}{a boolean indicating if the parameter tau will be selected. This can be possible only when \code{struct_temp=smooth}. Default is FALSE.}
 
-\item{tau.max}{the fixed value for tau if \code{tau.select=FALSE}. The maximal value of tau if \code{tau.select=TRUE} (must be lower than n). Default is \code{floor(n/2)}.}
+\item{tau_max}{the fixed value for tau if \code{tau_select=FALSE}. The maximal value of tau if \code{tau_select=TRUE} (must be lower than n). Default is \code{floor(n/2)}.}
 
-\item{type.soft}{the option \code{type} of the function softImpute. Default is \code{als}.}
+\item{type_soft}{the option \code{type} of the function softImpute. Default is \code{als}.}
 }
 \value{
 A list containing
 \itemize{
-\item \code{k.est} the selected rank if \code{k.select==TRUE} or \code{k.max} if \code{k.select==FALSE}.
-\item \code{tau.est} the selected tau if \code{tau.select==TRUE} or \code{tau.max} if \code{tau.select==FALSE}.
-\item \code{U.est} the component U of the decomposition of the final estimator \code{M.est}.
-\item \code{V.est} the component V of the decomposition of the final estimator \code{M.est}.
-\item \code{M.est} the estimation of M.
-\item \code{contrast} the Frobenius norm of X-M.est. This is a value when \code{k.select==FALSE} and \code{tau.select==FALSE}, a vector when \code{k.select==TRUE} or \code{tau.select==TRUE}, and a matrix when \code{k.select==TRUE} and \code{tau.select==TRUE} with \code{k.max} rows and \code{tau.max} columns.
+\item \code{k_est} the selected rank if \code{k_select==TRUE} or \code{k_max} if \code{k_select==FALSE}.
+\item \code{tau_est} the selected tau if \code{tau_select==TRUE} or \code{tau_max} if \code{tau_select==FALSE}.
+\item \code{U_est} the component U of the decomposition of the final estimator \code{M_est}.
+\item \code{V_est} the component V of the decomposition of the final estimator \code{M_est}.
+\item \code{M_est} the estimation of M.
+\item \code{contrast} the Frobenius norm of Data_Series-M_est. This is a value when \code{k_select==FALSE} and \code{tau_select==FALSE}, a vector when \code{k_select==TRUE} or \code{tau_select==TRUE}, and a matrix when \code{k_select==TRUE} and \code{tau_select==TRUE} with \code{k_max} rows and \code{tau_max} columns.
 }
 }
 \description{
-Matrix Factorization for Multivariate Time Series Analysis
+It is the main function. It performs the factorization for a selected rank and a temporal structure with a selected tau if the selection is requested otherwise it is fixed
 }
 \details{
 The penalty constant(s) is(are) calibrated using the slope heuristic from package capushe. We adapt this heuristic as follows: the final dimension is the one correspind to the majority of the selected dimension for the considered different penalties.
 }
 \examples{
-data(DataX)
-k.max=3
-result=TrendTM(X, k.max=k.max)
+data(Data_Series)
+result <- TrendTM(Data_Series, k_max = 3)
 }

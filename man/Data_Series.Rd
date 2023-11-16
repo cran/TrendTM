@@ -1,9 +1,9 @@
-\name{X}
-\alias{X}
+\name{Data_Series}
+\alias{Data_Series}
 \docType{data}
 \title{Example of data}
 \usage{
-data(DataX)
+data(Data_Series)
 }
 \description{A simulated matrix with a low rank k and with temporal structure based on independent Gaussian.
 }
@@ -12,10 +12,8 @@ data(DataX)
 }
 \examples{
 library(TrendTM)
-data(DataX)
-head(X)
-k.max=3
-tau.max=dim(X)[2]
-TrendTM(X,k.max=k.max)
+data(Data_Series)
+head(Data_Series)
+TrendTM(Data_Series,k_max=3)
 }
 \keyword{datasets}
