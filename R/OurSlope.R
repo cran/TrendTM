@@ -1,4 +1,3 @@
-
 #' It performs the slope heuristic for the selection of a penalty constant
 #'
 #' @param grille the ordered grid of potential values for the penalty constant
@@ -10,14 +9,10 @@
 #' @export
 
 OurSlope <- function(contrast, grille, penalty) {
-
-  DataForCa <- data.frame(model=paste("K=",grille), pen=penalty, complexity=grille, contrast=contrast)
+  DataForCa <- data.frame(model = paste("K=", grille), pen = penalty, complexity = grille, contrast = contrast)
   Res_capushe <- suppressWarnings(capushe::DDSE(DataForCa)@ModelHat)
   rg_max <- which.max(Res_capushe$number_plateau)
 
-  Model_Selected=grille[Res_capushe$model_hat[Res_capushe$point_breaking[rg_max]]]
+  Model_Selected <- grille[Res_capushe$model_hat[Res_capushe$point_breaking[rg_max]]]
   return(Model_Selected)
-
 }
-
-

@@ -30,9 +30,10 @@
 
 
 
-TrendTM <- function(Data_Series, k_select = FALSE, k_max = 20,
-                    struct_temp = "none", tau_select = FALSE,
+TrendTM <- function(Data_Series, k_select = FALSE,
+                    k_max = 20, struct_temp = "none", tau_select = FALSE,
                     tau_max = floor(n / 2), type_soft = "als") {
+
   d <- nrow(Data_Series)
   n <- ncol(Data_Series)
   s <- 4
